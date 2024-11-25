@@ -1,0 +1,143 @@
+MariaDB [bookshop]> INSERT INTO books(bid,bname,author,price) VALUE(1005,'photoshop','azadi',520000);
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [bookshop]> select * from books;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
+| 1005 | photoshop       | azadi      | 520000 |
++------+-----------------+------------+--------+
+5 rows in set (0.000 sec)
+
+MariaDB [bookshop]> INSERT INTO books VALUE(1006,'photoshop2024','azadi',620000);
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [bookshop]> select * from books;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
+| 1005 | photoshop       | azadi      | 520000 |
+| 1006 | photoshop2024   | azadi      | 620000 |
++------+-----------------+------------+--------+
+6 rows in set (0.000 sec)
+
+MariaDB [bookshop]> INSERT INTO books VALUE(1007,'photoshop2025','azadi');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [bookshop]> INSERT INTO books(bid,bname,author) VALUE(1007,'photoshop2025','azadi');
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [bookshop]> select * from books;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
+| 1005 | photoshop       | azadi      | 520000 |
+| 1006 | photoshop2024   | azadi      | 620000 |
+| 1007 | photoshop2025   | azadi      |   NULL |
++------+-----------------+------------+--------+
+7 rows in set (0.000 sec)
+
+MariaDB [bookshop]> INSERT INTO books(bname,author,price) VALUE('php2024','dehghan',520000);
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [bookshop]> select * from books;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
+| 1005 | photoshop       | azadi      | 520000 |
+| 1006 | photoshop2024   | azadi      | 620000 |
+| 1007 | photoshop2025   | azadi      |   NULL |
+| 1008 | php2024         | dehghan    | 520000 |
++------+-----------------+------------+--------+
+8 rows in set (0.000 sec)
+
+MariaDB [bookshop]> DELETE FROM books WHERE bid=1008;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [bookshop]> select * from books;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
+| 1005 | photoshop       | azadi      | 520000 |
+| 1006 | photoshop2024   | azadi      | 620000 |
+| 1007 | photoshop2025   | azadi      |   NULL |
++------+-----------------+------------+--------+
+7 rows in set (0.000 sec)
+
+MariaDB [bookshop]> DELETE FROM books WHERE bname like "p%";
+Query OK, 3 rows affected (0.001 sec)
+
+MariaDB [bookshop]> select * from books;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> UPDATE books SET price = price * 10 /100;
+Query OK, 4 rows affected (0.001 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+MariaDB [bookshop]> select * from books;
++------+-----------------+------------+-------+
+| bid  | bname           | author     | price |
++------+-----------------+------------+-------+
+| 1001 | binavayan       | ?????????? | 42000 |
+| 1002 | eghlim hasht    | ???? ????  | 28000 |
+| 1003 | kelila va demna | ??? ????   | 28000 |
+| 1004 | mabani siyasat  | ???? ????? | 25000 |
++------+-----------------+------------+-------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> UPDATE books SET author = "azadi"  WHERE bid = 1001;
+Query OK, 1 row affected (0.001 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [bookshop]> select * from books;
++------+-----------------+------------+-------+
+| bid  | bname           | author     | price |
++------+-----------------+------------+-------+
+| 1001 | binavayan       | azadi      | 42000 |
+| 1002 | eghlim hasht    | ???? ????  | 28000 |
+| 1003 | kelila va demna | ??? ????   | 28000 |
+| 1004 | mabani siyasat  | ???? ????? | 25000 |
++------+-----------------+------------+-------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> UPDATE books SET price = price + (price * 10 /100);
+Query OK, 4 rows affected (0.001 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+MariaDB [bookshop]> select * from books;
++------+-----------------+------------+-------+
+| bid  | bname           | author     | price |
++------+-----------------+------------+-------+
+| 1001 | binavayan       | azadi      | 46200 |
+| 1002 | eghlim hasht    | ???? ????  | 30800 |
+| 1003 | kelila va demna | ??? ????   | 30800 |
+| 1004 | mabani siyasat  | ???? ????? | 27500 |
++------+-----------------+------------+-------+
+4 rows in set (0.000 sec)
