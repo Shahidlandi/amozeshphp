@@ -1,0 +1,267 @@
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bookshop           |
+| information_schema |
+| menagerie          |
+| mysite             |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+8 rows in set (0.020 sec)
+
+MariaDB [(none)]> use bookshop
+Database changed
+MariaDB [bookshop]> SELECT * FROM books
+    -> /c
+    -> \c
+MariaDB [bookshop]> SELECT * FROM books;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+4 rows in set (0.027 sec)
+
+MariaDB [bookshop]> SELECT bid, bname FROM books;
++------+-----------------+
+| bid  | bname           |
++------+-----------------+
+| 1001 | binavayan       |
+| 1002 | eghlim hasht    |
+| 1003 | kelila va demna |
+| 1004 | mabani siyasat  |
++------+-----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid=1001;
++------+-----------+------------+--------+
+| bid  | bname     | author     | price  |
++------+-----------+------------+--------+
+| 1001 | binavayan | ?????????? | 420000 |
++------+-----------+------------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid=1000;
+Empty set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid >= 1001 and bid <= 1003;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
++------+-----------------+------------+--------+
+3 rows in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid >= 1001 or bid <= 1003;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid >= 1002 or bid <= 1003;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid >= 1002;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+3 rows in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid >= 1001 and bid <= 1003;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
++------+-----------------+------------+--------+
+3 rows in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid BETWEEN 1002 and 1004;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+3 rows in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bname like "m";
+Empty set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bname like "%m";
+Empty set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bname like "%m%";
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+3 rows in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bname like "m%";
++------+----------------+------------+--------+
+| bid  | bname          | author     | price  |
++------+----------------+------------+--------+
+| 1004 | mabani siyasat | ???? ????? | 250000 |
++------+----------------+------------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bname like "M%";
++------+----------------+------------+--------+
+| bid  | bname          | author     | price  |
++------+----------------+------------+--------+
+| 1004 | mabani siyasat | ???? ????? | 250000 |
++------+----------------+------------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid in(1001,1002);
++------+--------------+------------+--------+
+| bid  | bname        | author     | price  |
++------+--------------+------------+--------+
+| 1001 | binavayan    | ?????????? | 420000 |
+| 1002 | eghlim hasht | ???? ????  | 280000 |
++------+--------------+------------+--------+
+2 rows in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid in(1);
+Empty set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid in(1005);
+Empty set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid in(1005, 1003);
++------+-----------------+----------+--------+
+| bid  | bname           | author   | price  |
++------+-----------------+----------+--------+
+| 1003 | kelila va demna | ??? ???? | 280000 |
++------+-----------------+----------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [bookshop]> SELECT * FROM books WHERE bid  between 1001 and 1004;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> select count(*) as azadi from books;
++-------+
+| azadi |
++-------+
+|     4 |
++-------+
+1 row in set (0.000 sec)
+
+MariaDB [bookshop]> select * from books
+    -> \c
+MariaDB [bookshop]> select * from books;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> select * from books order by price;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1001 | binavayan       | ?????????? | 420000 |
++------+-----------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> select * from books order by price;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1001 | binavayan       | ?????????? | 420000 |
++------+-----------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> select * from books order by price desc;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> select * from books;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> select * from books order by bname;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1001 | binavayan       | ?????????? | 420000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
++------+-----------------+------------+--------+
+4 rows in set (0.000 sec)
+
+MariaDB [bookshop]> select * from books order by bname desc;
++------+-----------------+------------+--------+
+| bid  | bname           | author     | price  |
++------+-----------------+------------+--------+
+| 1004 | mabani siyasat  | ???? ????? | 250000 |
+| 1003 | kelila va demna | ??? ????   | 280000 |
+| 1002 | eghlim hasht    | ???? ????  | 280000 |
+| 1001 | binavayan       | ?????????? | 420000 |
++------+-----------------+------------+--------+
+4 rows in set (0.000 sec)
